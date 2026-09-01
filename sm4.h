@@ -368,4 +368,13 @@ void SM4SIMD(const uint32_t RK[32],
     _mm_storeu_si128((__m128i *)out2, ByteRe(B[2]));
     _mm_storeu_si128((__m128i *)out3, ByteRe(B[3]));
 }
+
+static inline void XORSIMD(uint8_t c[16],
+                           const uint8_t a[16], const uint8_t b[16])
+{
+    __m128i va = _mm_loadu_si128((const __m128i *)a);
+    __m128i vb = _mm_loadu_si128((const __m128i *)b);
+    __m128i vc = _mm_xor_si128(va, vb);
+    _mm_storeu_si128((__m128i *)c, vc);
+}
 #endif

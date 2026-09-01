@@ -14,17 +14,6 @@ static inline void CounterInc(uint8_t ctr[16], unsigned int delta)
     }
 }
 
-#if defined(SIMD)
-static inline void XORSIMD(uint8_t c[16],
-                           const uint8_t a[16], const uint8_t b[16])
-{
-    __m128i va = _mm_loadu_si128((const __m128i *)a);
-    __m128i vb = _mm_loadu_si128((const __m128i *)b);
-    __m128i vc = _mm_xor_si128(va, vb);
-    _mm_storeu_si128((__m128i *)c, vc);
-}
-#endif
-
 void EncCTR(const uint32_t RK[32], const uint8_t iv[16],
             const uint8_t *plaintext, uint8_t *ciphertext,
             long text_len)
