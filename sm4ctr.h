@@ -59,12 +59,11 @@ void EncCTR(const uint32_t RK[32], const uint8_t iv[16],
     // 最后不足64字节的部分每次加密16字节
     for (; i < text_len; i += 16)
     {
-        uint8_t keystream[16];
         // 计算密钥流
-        SM4(RK, counter, keystream, 0);
+        SM4(RK, counter, keystreams[0], 0);
         // 异或加密
         for (int j = 0; j < 16 && i + j < text_len; j++)
-            ciphertext[i + j] = plaintext[i + j] ^ keystream[j];
+            ciphertext[i + j] = plaintext[i + j] ^ keystreams[0][j];
         // 计数器递增
         CounterInc(counter, 1);
     }
