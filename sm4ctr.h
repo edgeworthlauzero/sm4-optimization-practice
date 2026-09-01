@@ -35,13 +35,13 @@ void EncCTR(const uint32_t RK[32], const uint8_t iv[16],
     uint8_t counter[16];
     memcpy(counter, iv, 16);
 
+    uint8_t counters[4][16];   // 四组计数器临时变量
+    uint8_t keystreams[4][16]; // 四组密钥流临时变量
+
     long i = 0;
     // 每次加密64字节
     for (; i + 64 <= text_len; i += 64)
     {
-        uint8_t counters[4][16];   // 四组计数器临时变量
-        uint8_t keystreams[4][16]; // 四组密钥流临时变量
-
         // 初始化四组计数器
         memcpy(counters[0], counter, 16);
         for (int b = 1; b < 4; b++)
