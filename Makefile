@@ -3,7 +3,7 @@ COMMON_FLAGS = -I . -O2
 TABLE_FLAGS = -DTABLE
 SIMD_FLAGS = -DSIMD -msse2 -mssse3
 
-all:
+build:
 	mkdir -p build
 	gcc $(MAIN) $(COMMON_FLAGS) -o build/sm4-test
 	gcc $(MAIN) $(COMMON_FLAGS) $(TABLE_FLAGS) -o build/sm4-test-table
