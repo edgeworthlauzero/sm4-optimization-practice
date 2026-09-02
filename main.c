@@ -4,15 +4,6 @@
 
 #define ROUND 10000
 
-// 打印十六进制数据
-void printhex(const uint8_t *label, const uint8_t *data, int len)
-{
-    printf("%s ", label);
-    for (int i = 0; i < len; i++)
-        printf("%02x", data[i]);
-    printf("\n");
-}
-
 int main()
 {
     // 测试数据
